@@ -18,10 +18,10 @@ db.on('error', function (error) {
 });
 
 // Main route 
-app.get('/', function (req, res) {
-    // ! confused about this
-    res.send('yoyo');
-});
+// app.get('/', function (req, res) {
+//     // ! confused about this
+//     res.send('yoyo');
+// });
 
 // Retrieve data from the db
 app.get('all', function (req, res) {
@@ -73,6 +73,10 @@ app.get('/scrape', function (req, res) {
     // Send a "Scrape Complete" message to the browser
     res.send('Scrape Complete')
 });
+
+
+app.use(express.static("/public"));
+require("./routes/html-routes.js")(app);
 
 // Listen on port 3000
 app.listen(3000, function () {
