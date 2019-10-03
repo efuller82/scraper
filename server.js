@@ -1,6 +1,7 @@
 var express = require('express');
 var mongojs = require('mongojs');
 
+
 var cheerio = require('cheerio');
 var axios = require('axios');
 
@@ -17,14 +18,9 @@ db.on('error', function (error) {
     console.log('Database Error:', error);
 });
 
-// Main route 
-// app.get('/', function (req, res) {
-//     // ! confused about this
-//     res.send('yoyo');
-// });
-
+// ! Here is where I'm having problems; getting Content Security error in console at localhost:3000/all
 // Retrieve data from the db
-app.get('all', function (req, res) {
+app.get('/all', function (req, res) {
     //Find all results from the scrapedData collection in the db
     db.scrapedData.find({}, function (error, found) {
         // Throw any errors to the console
@@ -35,6 +31,7 @@ app.get('all', function (req, res) {
         else {
             res.json(found);
         }
+        console.log(found);
     });
 });
 
@@ -73,7 +70,6 @@ app.get('/scrape', function (req, res) {
     // Send a "Scrape Complete" message to the browser
     res.send('Scrape Complete')
 });
-
 
 app.use(express.static("/public"));
 require("./routes/html-routes.js")(app);
