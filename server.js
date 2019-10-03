@@ -1,5 +1,6 @@
 var express = require('express');
 var mongojs = require('mongojs');
+var path = require('path');
 
 
 var cheerio = require('cheerio');
@@ -16,23 +17,6 @@ var collections = ['scrapedData'];
 var db = mongojs(databaseUrl, collections);
 db.on('error', function (error) {
     console.log('Database Error:', error);
-});
-
-// ! Here is where I'm having problems; getting Content Security error in console at localhost:3000/all
-// Retrieve data from the db
-app.get('/all', function (req, res) {
-    //Find all results from the scrapedData collection in the db
-    db.scrapedData.find({}, function (error, found) {
-        // Throw any errors to the console
-        if (error) {
-            console.log(error);
-        }
-        // If there are no errors, send the data to the browser as json
-        else {
-            res.json(found);
-        }
-        console.log(found);
-    });
 });
 
 // Scrape data from one site and place it into the mongo db
@@ -52,7 +36,7 @@ app.get('/scrape', function (req, res) {
                 // Insert the data in the scrapedData db
                 db.scrapedData.insert({
                     title: title,
-                    link: link
+                    link: link,
                 },
                     function (err, inserted) {
                         if (err) {
@@ -71,8 +55,10 @@ app.get('/scrape', function (req, res) {
     res.send('Scrape Complete')
 });
 
-app.use(express.static("/public"));
+app.use(express.static(path.join(__dirname, '/public')));
 require("./routes/html-routes.js")(app);
+
+require('./routes/api-routes.js')(app);
 
 // Listen on port 3000
 app.listen(3000, function () {
