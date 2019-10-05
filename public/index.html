@@ -23,13 +23,32 @@
             <!-- <button type="button" class="btn btn-success" id="scrape">Scrape</button> -->
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-8 articles">
+            <div class="col-sm-12 col-md-7 articles">
             </div>
-            <div class="col-sm-12 col-md-8 notes">
+            <div class="col-sm-12 col-md-5 notes">
+                <div class="card">
+                    <h2 class="card-header note-card-header">
+                        Notes
+                    </h2>
+                    <ul class="llist-group list-group-flush">
+                        <li class="list-group-item">Here is a sample note about an article</li>
+                        <li class="list-group-item">Here is a sample note about an article</li>
+                        <li class="list-group-item">Here is a sample note about an article</li>
+                        <form>
+                            <div class="form-group">
+                                <textarea class="form-control note-text" id="note-text-area" rows="3"
+                                    placeholder="Enter a note for the selected article"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit Note</button>
+                        </form>
+                    </ul>
 
+                    </p>
+                </div>
             </div>
-
         </div>
+
+    </div>
     </div>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"

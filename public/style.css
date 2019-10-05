@@ -1,7 +1,16 @@
+body {
+    background-color: lightgoldenrodyellow !important;
+}
+
 /* for jumbotron */
 #header {
     background-image: url('./images/farm_jumbo.jpg');
     background-size: 100% 100%;
     color: black;
     font-weight: bold;
+}
+
+/* Styling for note card on right side */
+.card-header {
+    background-color: darkkhaki !important;
 }
