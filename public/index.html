@@ -27,8 +27,8 @@
             </div>
             <div class="col-sm-12 col-md-5 notes">
                 <div class="card">
-                    <h2 class="card-header note-card-header">
-                        Notes
+                    <h2 class="card-header note-card-header" id="note-header">
+                        Notes:
                     </h2>
                     <ul class="llist-group list-group-flush">
                         <li class="list-group-item">Here is a sample note about an article</li>
@@ -36,10 +36,10 @@
                         <li class="list-group-item">Here is a sample note about an article</li>
                         <form>
                             <div class="form-group">
-                                <textarea class="form-control note-text" id="note-text-area" rows="3"
+                                <textarea class="form-control note-text" id="note-textarea" rows="3"
                                     placeholder="Enter a note for the selected article"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-success">Submit Note</button>
+                            <button type="button" class="btn btn-success" id="submit-note">Submit Note</button>
                         </form>
                     </ul>
 

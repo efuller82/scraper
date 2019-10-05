@@ -24,5 +24,26 @@ initPage();
 
 // Click event that brings up notes and form to add note
 $(document).on('click', '.btn-notes', function (event) {
-    console.log($(this).data());
+    var clickedId = $(this).data();
+    console.log(clickedId);
+    $('#note-header').text(clickedId._id);
 });
+
+// click event that should post notes to /allnotes
+$('#submit-note').on('click', function () {
+    var noteId = $('#note-header').text()
+    console.log(noteId);
+    $.ajax({
+        type: 'POST',
+        url: '/allnotes',
+        dataType: 'json',
+        data: {
+            _id: noteId,
+            note: $('note-textarea').val()
+        }
+    })
+        .then(function (data) {
+            console.log(data);
+        });
+    return false;
+})

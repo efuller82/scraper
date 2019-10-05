@@ -13,7 +13,7 @@ var app = express();
 
 // Database configuration
 var databaseUrl = 'sentinelScraper';
-var collections = ['scrapedData'];
+var collections = ['scrapedData', 'note'];
 
 // Hook mongojs configuration to the db variable
 var db = mongojs(databaseUrl, collections);
@@ -56,6 +56,7 @@ app.get('/scrape', function (req, res) {
     // Send a "Scrape Complete" message to the browser
     res.send('Scrape Complete')
 });
+
 
 app.use(express.static(path.join(__dirname, '/public')));
 require("./routes/html-routes.js")(app);
