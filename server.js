@@ -2,8 +2,8 @@ var express = require('express');
 var mongojs = require('mongojs');
 var path = require('path');
 
-// Require all models
-
+//! Require all models
+var Models = require('./models/index');
 
 var cheerio = require('cheerio');
 var axios = require('axios');

@@ -29,31 +29,5 @@ module.exports = function (app) {
         });
     });
 
-    // ! trying to make get route for note
-    app.get('/allnotes', function (req, res) {
-        db.note.find({}, function (error, found) {
-            if (error) {
-                console.log(error);
-            }
-            else {
-                res.json(found);
-            }
-            console.log(found);
-        });
-    });
-
-    //! begin to create route for notes;
-    app.post('/allnotes', function (req, res) {
-        var note = req.body;
-        db.note.save(note, function (error, saved) {
-            if (error) {
-                console.log(error);
-            }
-            else {
-                res.send(saved);
-            }
-        });
-    });
-
 };
 

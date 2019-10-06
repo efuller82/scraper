@@ -5,9 +5,14 @@ var Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 var UserSchema = new Schema({
-    name: {
+    title: {
         type: String,
+        required: true,
         unique: true
+    },
+    link: {
+        type: String,
+        required: true
     },
     // 'notes' is an array that stores ObjectIds
     // The ref property links these ObjectIds to the Note model
@@ -16,7 +21,6 @@ var UserSchema = new Schema({
         {
             // Store ObjectIds in the array
             type: Schema.Types.ObjectId,
-            // The ObjectIds will refer to the ids in the Note model
             ref: 'Note'
         }
     ]

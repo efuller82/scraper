@@ -30,20 +30,13 @@ $(document).on('click', '.btn-notes', function (event) {
 });
 
 // click event that should post notes to /allnotes
-$('#submit-note').on('click', function () {
+$('#submit-note').on('click', function (event) {
     var noteId = $('#note-header').text()
+    event.preventDefault();
     console.log(noteId);
     $.ajax({
         type: 'POST',
-        url: '/allnotes',
-        dataType: 'json',
-        data: {
-            _id: noteId,
-            note: $('note-textarea').val()
-        }
-    })
-        .then(function (data) {
-            console.log(data);
-        });
-    return false;
-})
+        url: '/all/' + noteId,
+    });
+
+});
