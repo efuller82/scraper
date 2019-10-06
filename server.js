@@ -8,6 +8,8 @@ var Models = require('./models/index');
 var cheerio = require('cheerio');
 var axios = require('axios');
 
+var mongoose = require('mongoose');
+
 // Initialize express
 var app = express();
 
