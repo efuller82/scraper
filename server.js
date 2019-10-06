@@ -20,6 +20,10 @@ var db = mongojs(databaseUrl, collections);
 db.on('error', function (error) {
     console.log('Database Error:', error);
 });
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
 
 // Scrape data from one site and place it into the mongo db
 app.get('/scrape', function (req, res) {
