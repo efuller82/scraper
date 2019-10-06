@@ -23,7 +23,7 @@ db.on('error', function (error) {
     console.log('Database Error:', error);
 });
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "http://localhost:3000/";
+var MONGODB_URI = process.env.MONGODB_URI || 3000;
 
 mongoose.connect(MONGODB_URI);
 
