@@ -34,6 +34,7 @@ $('#submit-note').on('click', function (event) {
     var noteId = $('#note-header').text()
     event.preventDefault();
     console.log(noteId);
+    //! attempt to do post here; this is wrong
     $.ajax({
         type: 'POST',
         url: '/all/' + noteId,
