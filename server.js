@@ -1,9 +1,11 @@
 var express = require('express');
 var mongojs = require('mongojs');
 var path = require('path');
+var bodyParser = require('body-parser');
 
-//! Require all models
+//! Require all models; currently doesn't do anything
 var Models = require('./models/index');
+
 
 var cheerio = require('cheerio');
 var axios = require('axios');
@@ -16,15 +18,16 @@ var app = express();
 // Database configuration
 var databaseUrl = 'sentinelScraper';
 var collections = ['scrapedData', 'note'];
+//! Connect to the Mongo DB
+mongoose.connect("mongodb://localhost/sentinelScraper", { useNewUrlParser: true });
 
 // Hook mongojs configuration to the db variable
 var db = mongojs(databaseUrl, collections);
 db.on('error', function (error) {
     console.log('Database Error:', error);
 });
-//! If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
+//! If deployed, use the deployed database. Otherwise use the local mongoHeadlines database; deploy does not work
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sentinelScraper";
 mongoose.connect(MONGODB_URI);
 
 // Scrape data from one site and place it into the mongo db

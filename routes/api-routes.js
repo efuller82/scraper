@@ -1,5 +1,9 @@
 var path = require("path");
 var mongojs = require('mongojs');
+var models = require('../models');
+var mongoose = require('mongoose');
+
+var express = require('express');
 
 // Database configuration
 var databaseUrl = 'sentinelScraper';
@@ -29,5 +33,28 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/notes', function (req, res) {
+        models.Note.find({}, function (error, found) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                res.json(found);
+            }
+            console.log(found);
+        });
+    });
+    app.post('/submit', function (req, res) {
+        models.Note.create(req.body)
+            .then(function (dbNote) {
+                return models.Article.findOneAndUpdate({}, { $push: { notes: dbNote._id } }, { new: true });
+            })
+            .then(function (dbArticle) {
+                res.json(dbArticle)
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
 };
 

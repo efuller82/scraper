@@ -3,6 +3,7 @@
 // to display data on page
 function displayResults(scrapedData) {
     scrapedData.forEach(function (article) {
+        //! .clear()
         var articleCard = $('<div class = "card">').append(
             $('<h5 class = "card-title">').text(article.title),
             $('<a class = "card-text">').html('<a href=' + 'https://dailysentinel.com/' + article.link + '>' + 'click to view article' + '</a>'),
@@ -35,9 +36,7 @@ $('#submit-note').on('click', function (event) {
     event.preventDefault();
     console.log(noteId);
     //! attempt to do post here; this is wrong
-    $.ajax({
-        type: 'POST',
-        url: '/all/' + noteId,
+    $.post('/submit', function (data) {
+        console.log(data);
     });
-
 });
